@@ -1,4 +1,6 @@
-console.log('this is loaded');
+exports.omdb = {
+  key: process.env.OMDB_KEY
+}
 
 exports.spotify = {
   id: process.env.SPOTIFY_ID,
