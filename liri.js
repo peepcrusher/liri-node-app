@@ -40,7 +40,13 @@ if(action === "concert-this"){
 }
 
 if(action === "spotify-this-song"){
-    
+    spotify.search({ type: 'track', query: 'All the Small Things' }, function(err, data) {
+        if (err) {
+          return console.log('Error occurred: ' + err);
+        }
+       
+      console.log(data); 
+      });
 }
 
 if(action === "movie-this"){
