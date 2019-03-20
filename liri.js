@@ -40,12 +40,15 @@ if(action === "concert-this"){
 }
 
 if(action === "spotify-this-song"){
-    spotify.search({ type: 'track', query: 'All the Small Things' }, function(err, data) {
+    spotify.search({ type: 'track', query: "U Shud Kno", limit: 5 }, function(err, data) {
         if (err) {
           return console.log('Error occurred: ' + err);
         }
        
-      console.log(data); 
+    //   console.log(data.tracks.items); 
+      console.log(data.tracks.items[0].name)
+      console.log("Artist: " + data.tracks.items[0].artists[0].name)
+      console.log("Link: " + data.tracks.items[0].external_urls.spotify)
       });
 }
 
