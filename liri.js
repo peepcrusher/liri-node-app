@@ -16,6 +16,19 @@ var nodeArgs = process.argv
 var action = process.argv[2];
 
 //variable for the subject of the search
+function spotifySearch(query){
+    spotify.search({ type: 'track', query: query, limit: 5 }, function(err, data) {
+        if (err) {
+          return console.log('Error occurred: ' + err);
+        }
+       
+    //   console.log(data.tracks.items); 
+      console.log("Track Name: " + data.tracks.items[0].name)
+      console.log("Artist: " + data.tracks.items[0].artists[0].name)
+      console.log("Link: " + data.tracks.items[0].external_urls.spotify)
+      });
+}
+
 var subject = "";
 
 for (var i = 3; i < nodeArgs.length; i++){
@@ -28,6 +41,23 @@ for (var i = 3; i < nodeArgs.length; i++){
       }
 }
 
+if(action === "do-what-it-says"){
+    fs.readFile("random.txt", "utf-8", function(err, data){
+        if(err){
+            console.log("ERROR!: " + err)
+        }
+
+        
+
+        console.log(data)
+        
+        
+    })
+    
+}
+
+
+
 if(action === "concert-this"){
     var queryUrl = "https://rest.bandsintown.com/artists/" + subject + "/events?app_id=codingbootcamp"
     axios.get(queryUrl)
@@ -39,20 +69,11 @@ if(action === "concert-this"){
     })
 }
 
-if(action === "spotify-this-song"){
-    spotify.search({ type: 'track', query: "U Shud Kno", limit: 5 }, function(err, data) {
-        if (err) {
-          return console.log('Error occurred: ' + err);
-        }
-       
-    //   console.log(data.tracks.items); 
-      console.log(data.tracks.items[0].name)
-      console.log("Artist: " + data.tracks.items[0].artists[0].name)
-      console.log("Link: " + data.tracks.items[0].external_urls.spotify)
-      });
+else if(action === "spotify-this-song"){
+    
 }
 
-if(action === "movie-this"){
+else if(action === "movie-this"){
     var queryUrl = "http://www.omdbapi.com/?t=" + subject + "&y=&plot=short&apikey=trilogy"
 
 axios.get(queryUrl)
@@ -68,17 +89,15 @@ axios.get(queryUrl)
 })
 }
 
-if(action === "do-what-it-says"){
-    
-}
 
-// else{
-//     console.log("Please use one of these functions")
-//     console.log("concert-this <artist name>")
-//     console.log("spotify-this-song <song name>")
-//     console.log("movie-this <movie name>")
-//     console.log("do-what-it-says")
-// }
+
+else{
+    console.log("Please use one of these functions")
+    console.log("concert-this <artist name>")
+    console.log("spotify-this-song <song name>")
+    console.log("movie-this <movie name>")
+    console.log("do-what-it-says")
+}
 
 
 
