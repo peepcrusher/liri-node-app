@@ -29,7 +29,14 @@ for (var i = 3; i < nodeArgs.length; i++){
 }
 
 if(action === "concert-this"){
-
+    var queryUrl = "https://rest.bandsintown.com/artists/" + subject + "/events?app_id=codingbootcamp"
+    axios.get(queryUrl)
+    .then(function(response){
+        
+        console.log("Venue: " + response.data[0].venue.name)
+        console.log("Location: " + response.data[0].venue.city + ", " + response.data[0].venue.country)
+        console.log("Date: " + moment(response.data[0].datetime).format("MM/DD/YYYY"))
+    })
 }
 
 if(action === "spotify-this-song"){
