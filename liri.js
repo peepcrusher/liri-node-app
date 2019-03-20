@@ -46,10 +46,10 @@ if(action === "do-what-it-says"){
         if(err){
             console.log("ERROR!: " + err)
         }
-
         
-
-        console.log(data)
+        
+        spotifySearch(data)
+        
         
         
     })
@@ -70,7 +70,7 @@ if(action === "concert-this"){
 }
 
 else if(action === "spotify-this-song"){
-    
+    spotifySearch(subject)
 }
 
 else if(action === "movie-this"){
@@ -91,13 +91,13 @@ axios.get(queryUrl)
 
 
 
-else{
-    console.log("Please use one of these functions")
-    console.log("concert-this <artist name>")
-    console.log("spotify-this-song <song name>")
-    console.log("movie-this <movie name>")
-    console.log("do-what-it-says")
-}
+// else{
+//     console.log("Please use one of these functions")
+//     console.log("concert-this <artist name>")
+//     console.log("spotify-this-song <song name>")
+//     console.log("movie-this <movie name>")
+//     console.log("do-what-it-says")
+// }
 
 
 
