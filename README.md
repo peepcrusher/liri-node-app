@@ -21,7 +21,7 @@ do-what-it-says will preform a spotify search for whatever is in the random.txt 
 
 Surprisingly I didn't run into that many roadblocks the thing I had the most trouble with was understanding how each of the different files worked with each other. 
 
-The spotify API was difficult, but once I used the node-spotify-api it was all smoothe sailing. 
+The spotify API was difficult, but once the node-spotify-api made it easy 
 
 ## Technologies used
 * Javascript
