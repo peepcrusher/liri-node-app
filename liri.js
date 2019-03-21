@@ -30,7 +30,7 @@ function spotifySearch(query){
 }
 
 var subject = "";
-
+//combine everything after the action into one searchable subject
 for (var i = 3; i < nodeArgs.length; i++){
     if (i > 3 && i < nodeArgs.length) {
         subject = subject + "+" + nodeArgs[i];
@@ -40,7 +40,7 @@ for (var i = 3; i < nodeArgs.length; i++){
     
       }
 }
-
+//do what it says will read whats in random.txt and conduct a spotify search for the contents
 if(action === "do-what-it-says"){
     fs.readFile("random.txt", "utf-8", function(err, data){
         if(err){
@@ -57,7 +57,7 @@ if(action === "do-what-it-says"){
 }
 
 
-
+//concert this plus the subject triggers an axios call to the bands in town api, and returns concert details for the subject
 if(action === "concert-this"){
     var queryUrl = "https://rest.bandsintown.com/artists/" + subject + "/events?app_id=codingbootcamp"
     axios.get(queryUrl)
@@ -68,13 +68,15 @@ if(action === "concert-this"){
         console.log("Date: " + moment(response.data[0].datetime).format("MM/DD/YYYY"))
     })
 }
-
+//calls the spotifySearch function with the parameter of subject
 else if(action === "spotify-this-song"){
     spotifySearch(subject)
 }
 
+//movie this triggers an axios call to the omdb page and logs some information about the subject movie
 else if(action === "movie-this"){
     var queryUrl = "http://www.omdbapi.com/?t=" + subject + "&y=&plot=short&apikey=trilogy"
+
 
 axios.get(queryUrl)
 .then(function(response){
